@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+canvas#dboard {
+	/* Don't like Lavender Blush, change it. */
+	background-color: LavenderBlush;
+	margin-left:  auto;
+	margin-right: auto;
+	width: 90%;
+	display: block;
+	padding: 1px;
+	border: 1px solid #000000;
+}
