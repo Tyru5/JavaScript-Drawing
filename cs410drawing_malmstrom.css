@@ -1,12 +1,22 @@
 @CHARSET "UTF-8";
 
+/*
+Tyrus  Malmstrom     				September 19, 2016
+this is the css for the welcome page for our project 2
+*/
+
+body {
+    /*For the Google Fair Play font*/
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
 canvas#dboard {
-	/* Don't like Lavender Blush, change it. */
-	background-color: LavenderBlush;
-	margin-left:  auto;
-	margin-right: auto;
-	width: 90%;
-	display: block;
-	padding: 1px;
-	border: 1px solid #000000;
+    /* Don't like Lavender Blush, change it. */
+    background-color: LavenderBlush;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    display: block;
+    padding: 1px;
+    border: 1px solid #000000;
 }
