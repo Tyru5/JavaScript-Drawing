@@ -11,14 +11,14 @@ function init() {
     console.log("The width of the board is: " + board_width);
     var board_height = dboard.height;
     console.log("The height of the board is: " + board_height);
-    // context.setTransform(board_height, 0.0, 0.0, -board_height, 0.0, board_height);
-    context.lineWidth = 0.001;
+    context.setTransform(board_height, 0.0, 0.0, -board_height, 0.0, board_height);
+    context.lineWidth = 0.004;
     drawThings();
 }
 
 function drawThings(){
-	// draw_rectangle();
-	drawTriangle  ();
+	drawCss_rect();
+  drawTriangle();
 }
 
 // 'class' for creating a rectangle;
@@ -32,16 +32,22 @@ function makeShape(x, y, width, height, fill, line) {
 }
 
 function draw_rectangle() {
-
-    var rect = new makeShape(0.05, 0.05, 0.05, 0.05, "#BCED91", "DarkRed");
+    var rect = new makeShape(0.0, 0.0, 0.125, 0.125, "#BCED91", "DarkRed");
     context.fillStyle = rect.fill;
     console.log("The fill styel is: " + rect.fill);
     context.strokeStyle = rect.line;
     console.log("The stroke style is: " + rect.line);
     context.rect(rect.x, rect.y, rect.width, rect.height);
-
     context.fill();
     context.stroke();
+}
+
+function drawCss_rect(){
+
+  for(var i = 0; i < 32; i++){
+    draw_rectangle();
+    context.transform(0.66, 0.0, 0.0, 0.66, 0.25, 0.33);
+  }
 
 }
 
@@ -49,9 +55,9 @@ function draw_rectangle() {
 function drawTriangle() {
 
     // going to draw a triangle:
-    var width = 125; // Triangle Width
-    var height = 105; // Triangle Height
-    var padding = 35;
+    var width =  0.125; // Triangle Width
+    var height = 0.125; // Triangle Height
+    var padding = .0625;
 
     var dim = document.getElementById('dboard');
     // grabbing the width of the canvas element:
@@ -63,9 +69,9 @@ function drawTriangle() {
     // Draw a path
     // the beginPath() method begins a path, or resets the current path
     context.beginPath();
-    context.moveTo(padding + width / 2, padding); // Top Corner
-    context.lineTo(padding + width, height + padding); // Bottom Right
-    context.lineTo(padding, height + padding); // Bottom Left
+    context.moveTo( -(padding + width / 2), -padding); // Top Corner
+    context.lineTo( padding + width, height + padding); // Bottom Right
+    context.lineTo(padding, -height + padding); // Bottom Left
     context.closePath();
 
     // Fill the path
@@ -73,7 +79,7 @@ function drawTriangle() {
     context.fill();
 
     // Create fill gradient
-    var gradient = context.createLinearGradient(0, 0, 0, height);
+    // var gradient = context.createLinearGradient(0, 0, 0, height);
     gradient.addColorStop(0, "#ffc821");
     gradient.addColorStop(1, "#faf100");
 
@@ -86,7 +92,7 @@ function drawTriangle() {
     context.shadowColor = "black";
 
     // Stroke the inner outline
-    context.lineWidth = 5; // thickness of the line
+    context.lineWidth = 0.005; // thickness of the line
     context.lineJoin = "round"; // makes the intersection of two lines rounded
     context.strokeStyle = "#333"; // The strokeStyle property sets or returns the color, gradient, or pattern used for strokes.
     context.stroke();
@@ -97,7 +103,7 @@ function drawTriangle() {
     context.font = "bold 60px 'Monospace', Times, serif";
     context.fillStyle = "#333";
     try {
-        context.fillText("!", 98, 100);
+        context.fillText("!", 0.5, 0.5);
     } catch (ex) {
         console.log("You for some reason could not fill in the text...");
     }
