@@ -8,15 +8,22 @@ this is the css for the welcome page for our project 2
 body {
     /*For the Google Fair Play font*/
     font-family: 'Open Sans Condensed', sans-serif;
+    background-color: #C8C8C8;
 }
 
 canvas#dboard {
     /* Don't like Lavender Blush, change it. */
     background-image: url("black_hole.jpg");
+    background-size: cover;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
     display: block;
     padding: 1px;
     border: 1px solid #000000;
+}
+
+p.fig{
+    text-align: center;
+	text-decoration: underline overline;
 }

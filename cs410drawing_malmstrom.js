@@ -5,10 +5,10 @@
 // All my code: (9/19/16)
 var context;
 
-var dx = 0.0065;
-var dy = 0.0015;
+var dx = 0.00095;
+var dy = 0.00025;
 var x = 0.0;
-var y = 0.5;
+var y = 0.025;;
 
 function init() {
     context = document.getElementById("dboard").getContext('2d');
@@ -18,8 +18,8 @@ function init() {
     console.log("The height of the board is: " + board_height);
     context.setTransform(board_height, 0.0, 0.0, -board_height, 0.0, board_height);
     context.lineWidth = 0.004;
-    // setInterval(drawBouncingBall, 10);
-    drawThings();
+    setInterval(drawBouncingBall, 10);
+    // drawThings();
 }
 
 function drawThings() {
@@ -50,8 +50,6 @@ function drawCircle() {
     context.fill();
     context.stroke();
     context.closePath();
-
-
 }
 
 function draw_rectangle() {
@@ -87,8 +85,8 @@ function drawBouncingBall() {
     context.closePath();
     context.fill();
     // This is the boundary logic so that the ball stays within the canvas frame
-    if (x < 0 || x > 1.45) dx = -dx;
-    if (y < 0 || y > 1) dy = -dy;
+    // if (x < 0 || x > 1.25) dx = -dx;
+    // if (y < 0 || y > 1) dy = -dy;
     x += dx;
     // console.log(x)
     y += dy;
@@ -98,16 +96,16 @@ function drawBouncingBall() {
 $(document).ready(function() {
     $('#dboard').click(function() {
         // alert("I am clicking man!");
-        dx = 0.00065;
-        dy = 0.00008;
         x = 0.0;
-        y = 0.0;
+        y = 0.025;
+        dx = 0.00095;
+        dy = 0.00025;
+
+        // make the ball more transparent as it gets closer to the balck hole:
+        // Usage:
+        // context.clearRect(x,y,width,height);
+        context.clearRect(0,0,1.5,1);
+
     });
-    $('#dboard').dblclick(function() {
-        // reset back to original position:
-        dx = 0.0065;
-        dy = 0.0015;
-        x = 0.0;
-        y = 0.5;
-    });
+
 });
