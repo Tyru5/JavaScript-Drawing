@@ -12,7 +12,7 @@ body {
 
 canvas#dboard {
     /* Don't like Lavender Blush, change it. */
-    background-color: #B8B8B8;
+    background-image: url("black_hole.jpg");
     margin-left: auto;
     margin-right: auto;
     width: 90%;

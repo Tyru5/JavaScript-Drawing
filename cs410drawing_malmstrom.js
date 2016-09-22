@@ -18,7 +18,7 @@ function init() {
     console.log("The height of the board is: " + board_height);
     context.setTransform(board_height, 0.0, 0.0, -board_height, 0.0, board_height);
     context.lineWidth = 0.004;
-    setInterval(drawBouncingBall, 10);
+    // setInterval(drawBouncingBall, 10);
     drawThings();
 }
 
