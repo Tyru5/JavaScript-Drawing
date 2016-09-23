@@ -78,7 +78,7 @@ function drawCss_rect() {
 
 
 function drawBouncingBall() {
-    context.clearRect(0, 0, 600, 400);
+    context.clearRect(0, 0, 1.5, 1);
     context.beginPath();
     context.fillStyle = "Red";
     context.arc(x, y, radius, 0, Math.PI * 2, true);
@@ -96,7 +96,7 @@ $(document).ready(function() {
         y = 0.025;
         dx = 0.00095;
         dy = 0.00025;
-        context.clearRect(0,0,1.5,1);
+        radius = 0.05;
     });
 
 });
