@@ -9,6 +9,7 @@ var dx = 0.00095;
 var dy = 0.00025;
 var x = 0.0;
 var y = 0.025;;
+var radius = 0.05;
 
 function init() {
     context = document.getElementById("dboard").getContext('2d');
@@ -80,17 +81,12 @@ function drawBouncingBall() {
     context.clearRect(0, 0, 600, 400);
     context.beginPath();
     context.fillStyle = "Red";
-    // Draws a circle of radius 20 at the coordinates 100,100 on the canvas
-    context.arc(x, y, 0.05, 0, Math.PI * 2, true);
-    context.closePath();
+    context.arc(x, y, radius, 0, Math.PI * 2, true);
     context.fill();
-    // This is the boundary logic so that the ball stays within the canvas frame
-    // if (x < 0 || x > 1.25) dx = -dx;
-    // if (y < 0 || y > 1) dy = -dy;
     x += dx;
-    // console.log(x)
     y += dy;
-    // console.log(y)
+    // updatea radius:
+    radius -= 0.00004;
 }
 
 $(document).ready(function() {
@@ -100,12 +96,7 @@ $(document).ready(function() {
         y = 0.025;
         dx = 0.00095;
         dy = 0.00025;
-
-        // make the ball more transparent as it gets closer to the balck hole:
-        // Usage:
-        // context.clearRect(x,y,width,height);
         context.clearRect(0,0,1.5,1);
-
     });
 
 });
