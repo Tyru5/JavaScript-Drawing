@@ -35,7 +35,9 @@ function init() {
 function drawThings() {
     // draw some other things here main:
     superNova();
-    square();
+    ss();
+    polygon();
+    drawStar();
     setInterval(slidingBall, 10);
 }
 
@@ -45,15 +47,25 @@ function arbitraryColor() {
     var green = Math.floor(Math.random() * 255);
     var blue = Math.floor(Math.random() * 255);
     var aplpha = Math.random();
-    var color = "rgba(" + red + "," + green + "," + blue + "," + aplpha + ")";
+    // var color = "rgba(" + red + "," + green + "," + blue + "," + aplpha + ")";
+    var color = "rgb(" + red + "," + green + "," + blue + ")";
     return color;
 }
 
 
 function superNova() {
     context.beginPath();
-    context.fillStyle = arbitraryColor();
+    // context.fillStyle = arbitraryColor();
     context.arc(cx, cy, 0.5, 0, 2 * Math.PI);
+    // context.fill();
+    // making a color gradient:
+
+    var grd = context.createRadialGradient(0.5, 0.5, 0.25, 0.8, 0.25, 1);
+    grd.addColorStop(0, arbitraryColor());
+    grd.addColorStop(1, arbitraryColor());
+
+    // fill in grd:
+    context.fillStyle = grd;
     context.fill();
     context.closePath();
 }
@@ -64,13 +76,67 @@ var commands = {
     }
 };
 
-function square(){
+function ss() {
+    // Horizontal scaling, Horizontal skewing, Vertical skewing, Vertical scaling, Horizontal moving, Vertical moving
+    /*
+        a	c	e
+        b	d	f
+        0	0	1
+    */
+    context.save();
+    for (var i = 0; i < 30; i++) {
+        drawRect();
+        context.transform(0.66, 0, 0, 0.66, 0.33, 0.33);
+    }
+    context.restore();
+}
 
-  context.fillStyle = "Pink";
-  context.fillRect(0.75, 0.5, 0.25,0.25);
+function drawRect() {
+    context.fillStyle = "Grey";
+    context.fillRect(0.1, 0.35, 0.05, 0.05);
+}
 
+
+function polygon() {
+
+    context.beginPath();
+    context.strokeStyle = arbitraryColor();
+    context.fillStyle = arbitraryColor();
+    context.moveTo(1.2, 0.99);
+    context.lineTo(1.4, 0.99);
+    context.lineTo(1.45, 0.85);
+    context.lineTo(1.35, 0.75);
+    context.lineTo(1.2, 0.85);
+    context.lineTo(1.2, 0.99);
+    context.fill();
+    context.stroke();
+    context.closePath();
 
 }
+
+
+// reusing my old code from CT310:
+function drawStar() {
+    context.beginPath();
+    context.fillStyle = "#800080";
+    context.arc(1.35, 0.2, 0.025, 0, Math.PI * 2);
+    context.fill();
+
+    context.fillStyle = arbitraryColor(); // pretty much black
+    make_star(context, 1.35, 0.2, 10, 0.25, 0.005);
+    context.fill();
+}
+
+function make_star(currentContext, xCent, yCent, num_points, outR, inR) { // xCent --> x coordinate of center of star in the context
+    currentContext.beginPath(); // yCent --> y "                                         "
+    for (var vert = 0; vert <= 2 * num_points; ++vert) {
+        var angle = vert * Math.PI / num_points - Math.PI / 2;
+        var radius = vert % 2 == 0 ? outR : inR;
+        currentContext.lineTo(xCent + radius * Math.cos(angle), yCent + radius * Math.sin(angle));
+    }
+}
+
+
 
 function slidingBall() {
     context.clearRect(0.0, 0.0, 0.855555500000005, 0.26555555000000019); // yeah yeah i know, this is kinda bad haha
