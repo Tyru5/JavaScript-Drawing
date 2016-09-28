@@ -42,27 +42,25 @@ function drawThings() {
 }
 
 // function that retruns a random color: (sets it using rgba() )
-function arbitraryColor() {
+function arbitraryColor(flag) {
     var red = Math.floor(Math.random() * 255);
     var green = Math.floor(Math.random() * 255);
     var blue = Math.floor(Math.random() * 255);
     var aplpha = Math.random();
-    // var color = "rgba(" + red + "," + green + "," + blue + "," + aplpha + ")";
-    var color = "rgb(" + red + "," + green + "," + blue + ")";
-    return color;
+    var colora = "rgba(" + red + "," + green + "," + blue + "," + aplpha + ")"; // color with alpha value.
+    var color = "rgb(" + red + "," + green + "," + blue + ")"; // color without alpha value.
+    return (flag == 1) ? colora : color;
 }
 
 
 function superNova() {
     context.beginPath();
-    // context.fillStyle = arbitraryColor();
     context.arc(cx, cy, 0.5, 0, 2 * Math.PI);
-    // context.fill();
-    // making a color gradient:
 
+    // making a color gradient:
     var grd = context.createRadialGradient(0.5, 0.5, 0.25, 0.8, 0.25, 1);
-    grd.addColorStop(0, arbitraryColor());
-    grd.addColorStop(1, arbitraryColor());
+    grd.addColorStop(0, arbitraryColor(0) );
+    grd.addColorStop(1, arbitraryColor(0) );
 
     // fill in grd:
     context.fillStyle = grd;
@@ -92,7 +90,7 @@ function ss() {
 }
 
 function drawRect() {
-    context.fillStyle = "Grey";
+    context.fillStyle = arbitraryColor(0);
     context.fillRect(0.1, 0.35, 0.05, 0.05);
 }
 
@@ -100,8 +98,8 @@ function drawRect() {
 function polygon() {
 
     context.beginPath();
-    context.strokeStyle = arbitraryColor();
-    context.fillStyle = arbitraryColor();
+    context.strokeStyle = arbitraryColor(0);
+    context.fillStyle = arbitraryColor(0);
     context.moveTo(1.2, 0.99);
     context.lineTo(1.4, 0.99);
     context.lineTo(1.45, 0.85);
@@ -118,11 +116,11 @@ function polygon() {
 // reusing my old code from CT310:
 function drawStar() {
     context.beginPath();
-    context.fillStyle = "#800080";
+    context.fillStyle = arbitraryColor(1); // circle that 'encapsulates' the star.
     context.arc(1.35, 0.2, 0.025, 0, Math.PI * 2);
     context.fill();
 
-    context.fillStyle = arbitraryColor(); // pretty much black
+    context.fillStyle = arbitraryColor(0);
     make_star(context, 1.35, 0.2, 10, 0.25, 0.005);
     context.fill();
 }

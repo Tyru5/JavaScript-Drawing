@@ -27,3 +27,8 @@ p.fig{
     text-align: center;
 	text-decoration: underline overline;
 }
+
+#list{
+  /*this arrow is found on: https://www.iconfinder.com/ at this specific url: https://www.iconfinder.com/icons/211620/arrow_b_right_icon#size=16*/
+  list-style-image: url("arrow.png");
+}
