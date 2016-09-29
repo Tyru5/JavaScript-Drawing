@@ -99,14 +99,14 @@ function polygonz() {
 
     context.beginPath();
     context.strokeStyle = arbitraryColor(0);
-    context.fillStyle = arbitraryColor(0);
+    // context.fillStyle = arbitraryColor(0);
     context.moveTo(1.2, 0.99);
     context.lineTo(1.4, 0.99);
     context.lineTo(1.4, 0.85);
     context.lineTo(1.30, 0.75);
     context.lineTo(1.2, 0.85);
     context.lineTo(1.2, 0.99);
-    context.fill();
+    // context.fill();
     context.stroke();
     context.closePath();
 
@@ -145,9 +145,11 @@ function drawStarz() {
 
     // drawing second star:
     context.beginPath();
-    context.fillStyle = arbitraryColor(1); // circle that 'encapsulates' the star.
+    // context.fillStyle = arbitraryColor(1); // circle that 'encapsulates' the star.
+    context.strokeStyle = arbitraryColor(0);
     context.arc(0.2, 0.45, 0.025, 0, Math.PI * 2);
-    context.fill();
+    // context.fill();
+    context.stroke();
 
     context.fillStyle = arbitraryColor(0);
     make_star(context, 0.2, 0.45, 4, 0.25, 0.005);
