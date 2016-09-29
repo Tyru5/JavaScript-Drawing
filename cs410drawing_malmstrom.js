@@ -36,8 +36,8 @@ function drawThings() {
     // draw some other things here main:
     superNova();
     ss();
-    polygon();
-    drawStar();
+    polygonz();
+    drawStarz();
     setInterval(slidingBall, 10);
 }
 
@@ -59,8 +59,8 @@ function superNova() {
 
     // making a color gradient:
     var grd = context.createRadialGradient(0.5, 0.5, 0.25, 0.8, 0.25, 1);
-    grd.addColorStop(0, arbitraryColor(0) );
-    grd.addColorStop(1, arbitraryColor(0) );
+    grd.addColorStop(0, arbitraryColor(0));
+    grd.addColorStop(1, arbitraryColor(0));
 
     // fill in grd:
     context.fillStyle = grd;
@@ -83,38 +83,56 @@ function ss() {
     */
     context.save();
     for (var i = 0; i < 30; i++) {
-        drawRect();
+        drawRect(i);
         context.transform(0.66, 0, 0, 0.66, 0.33, 0.33);
     }
     context.restore();
 }
 
-function drawRect() {
+function drawRect(flag) {
     context.fillStyle = arbitraryColor(0);
     context.fillRect(0.1, 0.35, 0.05, 0.05);
 }
 
 
-function polygon() {
+function polygonz() {
 
     context.beginPath();
     context.strokeStyle = arbitraryColor(0);
     context.fillStyle = arbitraryColor(0);
     context.moveTo(1.2, 0.99);
     context.lineTo(1.4, 0.99);
-    context.lineTo(1.45, 0.85);
-    context.lineTo(1.35, 0.75);
+    context.lineTo(1.4, 0.85);
+    context.lineTo(1.30, 0.75);
     context.lineTo(1.2, 0.85);
     context.lineTo(1.2, 0.99);
     context.fill();
     context.stroke();
     context.closePath();
 
+    // drawing second one:
+    context.save();
+    context.beginPath();
+    context.strokeStyle = arbitraryColor(0);
+    context.fillStyle = arbitraryColor(0);
+    context.rotate(50 * Math.PI / 180); // rotate by 180 degrees.
+    context.transform(0.33, 0, 0, 0.33, 0.33, 0.33);
+    context.moveTo(1.2, 0.45);
+    context.lineTo(1.4, 0.65);
+    context.lineTo(1.4, 0.85);
+    context.lineTo(1.30, 0.75);
+    context.lineTo(1.2, 0.85);
+    context.lineTo(1.2, 0.45);
+    context.fill();
+    context.stroke();
+    context.closePath();
+    context.restore();
+
 }
 
 
 // reusing my old code from CT310:
-function drawStar() {
+function drawStarz() {
     context.beginPath();
     context.fillStyle = arbitraryColor(1); // circle that 'encapsulates' the star.
     context.arc(1.35, 0.2, 0.025, 0, Math.PI * 2);
@@ -123,6 +141,34 @@ function drawStar() {
     context.fillStyle = arbitraryColor(0);
     make_star(context, 1.35, 0.2, 10, 0.25, 0.005);
     context.fill();
+
+
+    // drawing second star:
+    context.beginPath();
+    context.fillStyle = arbitraryColor(1); // circle that 'encapsulates' the star.
+    context.arc(0.2, 0.45, 0.025, 0, Math.PI * 2);
+    context.fill();
+
+    context.fillStyle = arbitraryColor(0);
+    make_star(context, 0.2, 0.45, 4, 0.25, 0.005);
+    context.fill();
+
+
+
+    // drawing third star:
+    context.save();
+    context.transform(.33, 0, 0, .33, .66, .66);
+    context.beginPath();
+    context.fillStyle = arbitraryColor(1); // circle that 'encapsulates' the star.
+    context.arc(0.77, 0.85, 0.025, 0, Math.PI * 2);
+    context.fill();
+
+    context.fillStyle = arbitraryColor(0);
+    make_star(context, 0.77, 0.85, 12, 0.25, 0.005);
+    context.fill();
+    context.restore();
+
+
 }
 
 function make_star(currentContext, xCent, yCent, num_points, outR, inR) { // xCent --> x coordinate of center of star in the context
