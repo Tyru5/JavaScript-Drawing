@@ -159,7 +159,7 @@ function drawStarz() {
 
     // drawing third star:
     context.save();
-    context.transform(.33, 0, 0, .33, .66, .66);
+    context.transform(0.33, 0, 0, 0.33, 0.66, 0.66);
     context.beginPath();
     context.fillStyle = arbitraryColor(1); // circle that 'encapsulates' the star.
     context.arc(0.77, 0.85, 0.025, 0, Math.PI * 2);
